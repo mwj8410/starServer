@@ -1,15 +1,16 @@
+/* global process, require */
 const bodyParser = require('body-parser');
 const express = require('express');
 const http = require('http');
 
 let router = express();
 let server = http.createServer(router);
-let port = 3000;
+let port = process.argv[2] || 8080;
 
-
-router.use(bodyParser.json()); // for parsing application/json
-router.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
+// for parsing application/json
+router.use(bodyParser.json());
+// for parsing application/x-www-form-urlencoded
+router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/', (req, resp) => {
   return resp.status(200).send();
